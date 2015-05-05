@@ -1,0 +1,433 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9555588B1AF968EA009AA8AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588A1AF968EA009AA8AA /* main.m */; };
+		9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588D1AF968EA009AA8AA /* AppDelegate.m */; };
+		955558911AF968EA009AA8AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558901AF968EA009AA8AA /* ViewController.m */; };
+		955558941AF968EA009AA8AA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955558921AF968EA009AA8AA /* Main.storyboard */; };
+		955558961AF968EA009AA8AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 955558951AF968EA009AA8AA /* Images.xcassets */; };
+		955558991AF968EA009AA8AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955558971AF968EA009AA8AA /* LaunchScreen.xib */; };
+		955558A51AF968EA009AA8AA /* GrouPayAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558A41AF968EA009AA8AA /* GrouPayAppTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9555589F1AF968EA009AA8AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9555587D1AF968EA009AA8AA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 955558841AF968EA009AA8AA;
+			remoteInfo = GrouPayApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		955558851AF968EA009AA8AA /* GrouPayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		955558891AF968EA009AA8AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9555588A1AF968EA009AA8AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9555588C1AF968EA009AA8AA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9555588D1AF968EA009AA8AA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9555588F1AF968EA009AA8AA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		955558901AF968EA009AA8AA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		955558931AF968EA009AA8AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		955558951AF968EA009AA8AA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		955558981AF968EA009AA8AA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9555589E1AF968EA009AA8AA /* GrouPayAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouPayAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		955558A31AF968EA009AA8AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		955558A41AF968EA009AA8AA /* GrouPayAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouPayAppTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		955558821AF968EA009AA8AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9555589B1AF968EA009AA8AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9555587C1AF968EA009AA8AA = {
+			isa = PBXGroup;
+			children = (
+				955558871AF968EA009AA8AA /* GrouPayApp */,
+				955558A11AF968EA009AA8AA /* GrouPayAppTests */,
+				955558861AF968EA009AA8AA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		955558861AF968EA009AA8AA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				955558851AF968EA009AA8AA /* GrouPayApp.app */,
+				9555589E1AF968EA009AA8AA /* GrouPayAppTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		955558871AF968EA009AA8AA /* GrouPayApp */ = {
+			isa = PBXGroup;
+			children = (
+				9555588C1AF968EA009AA8AA /* AppDelegate.h */,
+				9555588D1AF968EA009AA8AA /* AppDelegate.m */,
+				9555588F1AF968EA009AA8AA /* ViewController.h */,
+				955558901AF968EA009AA8AA /* ViewController.m */,
+				955558921AF968EA009AA8AA /* Main.storyboard */,
+				955558951AF968EA009AA8AA /* Images.xcassets */,
+				955558971AF968EA009AA8AA /* LaunchScreen.xib */,
+				955558881AF968EA009AA8AA /* Supporting Files */,
+			);
+			path = GrouPayApp;
+			sourceTree = "<group>";
+		};
+		955558881AF968EA009AA8AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				955558891AF968EA009AA8AA /* Info.plist */,
+				9555588A1AF968EA009AA8AA /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		955558A11AF968EA009AA8AA /* GrouPayAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				955558A41AF968EA009AA8AA /* GrouPayAppTests.m */,
+				955558A21AF968EA009AA8AA /* Supporting Files */,
+			);
+			path = GrouPayAppTests;
+			sourceTree = "<group>";
+		};
+		955558A21AF968EA009AA8AA /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				955558A31AF968EA009AA8AA /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		955558841AF968EA009AA8AA /* GrouPayApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 955558A81AF968EA009AA8AA /* Build configuration list for PBXNativeTarget "GrouPayApp" */;
+			buildPhases = (
+				955558811AF968EA009AA8AA /* Sources */,
+				955558821AF968EA009AA8AA /* Frameworks */,
+				955558831AF968EA009AA8AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GrouPayApp;
+			productName = GrouPayApp;
+			productReference = 955558851AF968EA009AA8AA /* GrouPayApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9555589D1AF968EA009AA8AA /* GrouPayAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 955558AB1AF968EA009AA8AA /* Build configuration list for PBXNativeTarget "GrouPayAppTests" */;
+			buildPhases = (
+				9555589A1AF968EA009AA8AA /* Sources */,
+				9555589B1AF968EA009AA8AA /* Frameworks */,
+				9555589C1AF968EA009AA8AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				955558A01AF968EA009AA8AA /* PBXTargetDependency */,
+			);
+			name = GrouPayAppTests;
+			productName = GrouPayAppTests;
+			productReference = 9555589E1AF968EA009AA8AA /* GrouPayAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9555587D1AF968EA009AA8AA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = "Prashant S Waykar";
+				TargetAttributes = {
+					955558841AF968EA009AA8AA = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					9555589D1AF968EA009AA8AA = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = 955558841AF968EA009AA8AA;
+					};
+				};
+			};
+			buildConfigurationList = 955558801AF968EA009AA8AA /* Build configuration list for PBXProject "GrouPayApp" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9555587C1AF968EA009AA8AA;
+			productRefGroup = 955558861AF968EA009AA8AA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				955558841AF968EA009AA8AA /* GrouPayApp */,
+				9555589D1AF968EA009AA8AA /* GrouPayAppTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		955558831AF968EA009AA8AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				955558941AF968EA009AA8AA /* Main.storyboard in Resources */,
+				955558991AF968EA009AA8AA /* LaunchScreen.xib in Resources */,
+				955558961AF968EA009AA8AA /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9555589C1AF968EA009AA8AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		955558811AF968EA009AA8AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				955558911AF968EA009AA8AA /* ViewController.m in Sources */,
+				9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */,
+				9555588B1AF968EA009AA8AA /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9555589A1AF968EA009AA8AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				955558A51AF968EA009AA8AA /* GrouPayAppTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		955558A01AF968EA009AA8AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 955558841AF968EA009AA8AA /* GrouPayApp */;
+			targetProxy = 9555589F1AF968EA009AA8AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		955558921AF968EA009AA8AA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				955558931AF968EA009AA8AA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		955558971AF968EA009AA8AA /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				955558981AF968EA009AA8AA /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		955558A61AF968EA009AA8AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		955558A71AF968EA009AA8AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		955558A91AF968EA009AA8AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GrouPayApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		955558AA1AF968EA009AA8AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GrouPayApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		955558AC1AF968EA009AA8AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrouPayAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrouPayApp.app/GrouPayApp";
+			};
+			name = Debug;
+		};
+		955558AD1AF968EA009AA8AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = GrouPayAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GrouPayApp.app/GrouPayApp";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		955558801AF968EA009AA8AA /* Build configuration list for PBXProject "GrouPayApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				955558A61AF968EA009AA8AA /* Debug */,
+				955558A71AF968EA009AA8AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		955558A81AF968EA009AA8AA /* Build configuration list for PBXNativeTarget "GrouPayApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				955558A91AF968EA009AA8AA /* Debug */,
+				955558AA1AF968EA009AA8AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		955558AB1AF968EA009AA8AA /* Build configuration list for PBXNativeTarget "GrouPayAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				955558AC1AF968EA009AA8AA /* Debug */,
+				955558AD1AF968EA009AA8AA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9555587D1AF968EA009AA8AA /* Project object */;
+}
