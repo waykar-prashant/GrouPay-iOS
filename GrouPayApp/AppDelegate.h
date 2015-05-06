@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
+@property (nonatomic, retain) User *userDetails;
++ (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag;
 
 @end
 

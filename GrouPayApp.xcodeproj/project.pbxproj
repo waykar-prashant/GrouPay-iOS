@@ -14,6 +14,18 @@
 		955558961AF968EA009AA8AA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 955558951AF968EA009AA8AA /* Images.xcassets */; };
 		955558991AF968EA009AA8AA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 955558971AF968EA009AA8AA /* LaunchScreen.xib */; };
 		955558A51AF968EA009AA8AA /* GrouPayAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558A41AF968EA009AA8AA /* GrouPayAppTests.m */; };
+		955558B01AF96915009AA8AA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558AF1AF96915009AA8AA /* LoginViewController.m */; };
+		955558B31AF96928009AA8AA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558B21AF96928009AA8AA /* RegisterViewController.m */; };
+		955558B71AF96A59009AA8AA /* button.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558B41AF96A59009AA8AA /* button.png */; };
+		955558B81AF96A59009AA8AA /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558B51AF96A59009AA8AA /* Default.png */; };
+		955558B91AF96A59009AA8AA /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558B61AF96A59009AA8AA /* Default@2x.png */; };
+		955558BC1AF97346009AA8AA /* HttpUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558BB1AF97346009AA8AA /* HttpUtil.m */; };
+		955558BF1AF973EB009AA8AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558BE1AF973EB009AA8AA /* User.m */; };
+		955558C21AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C11AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m */; };
+		955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */; };
+		955558C71AF980E0009AA8AA /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558C61AF980E0009AA8AA /* group.png */; };
+		955558CA1AF9A60F009AA8AA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C91AF9A60F009AA8AA /* Group.m */; };
+		955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +52,26 @@
 		9555589E1AF968EA009AA8AA /* GrouPayAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouPayAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		955558A31AF968EA009AA8AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		955558A41AF968EA009AA8AA /* GrouPayAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouPayAppTests.m; sourceTree = "<group>"; };
+		955558AE1AF96915009AA8AA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		955558AF1AF96915009AA8AA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		955558B11AF96928009AA8AA /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		955558B21AF96928009AA8AA /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		955558B41AF96A59009AA8AA /* button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button.png; sourceTree = "<group>"; };
+		955558B51AF96A59009AA8AA /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		955558B61AF96A59009AA8AA /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		955558BA1AF97346009AA8AA /* HttpUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpUtil.h; sourceTree = "<group>"; };
+		955558BB1AF97346009AA8AA /* HttpUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpUtil.m; sourceTree = "<group>"; };
+		955558BD1AF973EB009AA8AA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		955558BE1AF973EB009AA8AA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		955558C01AF97892009AA8AA /* GroupsTabViewControllerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupsTabViewControllerTableViewController.h; sourceTree = "<group>"; };
+		955558C11AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTabViewControllerTableViewController.m; sourceTree = "<group>"; };
+		955558C31AF9804D009AA8AA /* CreateNewGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewGroupVC.h; sourceTree = "<group>"; };
+		955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewGroupVC.m; sourceTree = "<group>"; };
+		955558C61AF980E0009AA8AA /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		955558C81AF9A60F009AA8AA /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		955558C91AF9A60F009AA8AA /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		955558CB1AF9B7E0009AA8AA /* GroupDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailVC.h; sourceTree = "<group>"; };
+		955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +95,7 @@
 		9555587C1AF968EA009AA8AA = {
 			isa = PBXGroup;
 			children = (
+				955558C61AF980E0009AA8AA /* group.png */,
 				955558871AF968EA009AA8AA /* GrouPayApp */,
 				955558A11AF968EA009AA8AA /* GrouPayAppTests */,
 				955558861AF968EA009AA8AA /* Products */,
@@ -81,6 +114,9 @@
 		955558871AF968EA009AA8AA /* GrouPayApp */ = {
 			isa = PBXGroup;
 			children = (
+				955558B41AF96A59009AA8AA /* button.png */,
+				955558B51AF96A59009AA8AA /* Default.png */,
+				955558B61AF96A59009AA8AA /* Default@2x.png */,
 				9555588C1AF968EA009AA8AA /* AppDelegate.h */,
 				9555588D1AF968EA009AA8AA /* AppDelegate.m */,
 				9555588F1AF968EA009AA8AA /* ViewController.h */,
@@ -89,6 +125,16 @@
 				955558951AF968EA009AA8AA /* Images.xcassets */,
 				955558971AF968EA009AA8AA /* LaunchScreen.xib */,
 				955558881AF968EA009AA8AA /* Supporting Files */,
+				955558AE1AF96915009AA8AA /* LoginViewController.h */,
+				955558AF1AF96915009AA8AA /* LoginViewController.m */,
+				955558B11AF96928009AA8AA /* RegisterViewController.h */,
+				955558B21AF96928009AA8AA /* RegisterViewController.m */,
+				955558C01AF97892009AA8AA /* GroupsTabViewControllerTableViewController.h */,
+				955558C11AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m */,
+				955558C31AF9804D009AA8AA /* CreateNewGroupVC.h */,
+				955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */,
+				955558CB1AF9B7E0009AA8AA /* GroupDetailVC.h */,
+				955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */,
 			);
 			path = GrouPayApp;
 			sourceTree = "<group>";
@@ -98,6 +144,12 @@
 			children = (
 				955558891AF968EA009AA8AA /* Info.plist */,
 				9555588A1AF968EA009AA8AA /* main.m */,
+				955558BA1AF97346009AA8AA /* HttpUtil.h */,
+				955558BB1AF97346009AA8AA /* HttpUtil.m */,
+				955558BD1AF973EB009AA8AA /* User.h */,
+				955558BE1AF973EB009AA8AA /* User.m */,
+				955558C81AF9A60F009AA8AA /* Group.h */,
+				955558C91AF9A60F009AA8AA /* Group.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -199,9 +251,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955558B91AF96A59009AA8AA /* Default@2x.png in Resources */,
 				955558941AF968EA009AA8AA /* Main.storyboard in Resources */,
+				955558B71AF96A59009AA8AA /* button.png in Resources */,
 				955558991AF968EA009AA8AA /* LaunchScreen.xib in Resources */,
+				955558C71AF980E0009AA8AA /* group.png in Resources */,
 				955558961AF968EA009AA8AA /* Images.xcassets in Resources */,
+				955558B81AF96A59009AA8AA /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +275,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				955558B31AF96928009AA8AA /* RegisterViewController.m in Sources */,
+				955558BF1AF973EB009AA8AA /* User.m in Sources */,
+				955558BC1AF97346009AA8AA /* HttpUtil.m in Sources */,
+				955558B01AF96915009AA8AA /* LoginViewController.m in Sources */,
+				955558C21AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m in Sources */,
 				955558911AF968EA009AA8AA /* ViewController.m in Sources */,
+				955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */,
+				955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */,
+				955558CA1AF9A60F009AA8AA /* Group.m in Sources */,
 				9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */,
 				9555588B1AF968EA009AA8AA /* main.m in Sources */,
 			);
