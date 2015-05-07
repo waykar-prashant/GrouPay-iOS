@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString *eventFee;
 @property (nonatomic, retain) NSString *youPaid;
 @property (nonatomic, retain) NSMutableArray *memberArray;
+@property (weak, nonatomic) IBOutlet UILabel *myLabel;
 
 @end

@@ -13,7 +13,7 @@
 @end
 
 @implementation EventDetailVC
-@synthesize eventId, eventName, eventDesc, eventFee, youPaid, memberArray;
+@synthesize eventId, eventName, eventDesc, eventFee, youPaid, memberArray, myLabel;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,26 +33,70 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
+    if(section == 0){
+        return 6;
+    }else if (section == 1){
+        return [memberArray count];
+    }
     return 0;
 }
 
-/*
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return @"Event Information";
+    }else if(section == 1){
+        return @"Event Members";
+    }
+    return @"";
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    //name, description, start_time, end_time, creator_id, fee,
+    if(indexPath.section == 0){
+        if(indexPath.row ==0){
+            cell.textLabel.text = @"Event Name : ";
+            myLabel.text = eventName;
+        }else if(indexPath.row == 1){
+            cell.textLabel.text = @"Description : ";
+            myLabel.text = eventDesc;
+        }else if(indexPath.row == 2){
+            cell.textLabel.text = @"Start Time : ";
+            myLabel.text = @"08-12-2015";
+        }else if(indexPath.row == 3){
+            cell.textLabel.text = @"End Time : ";
+            myLabel.text =  @"08-12-2015";
+        }else if(indexPath.row == 4){
+            cell.textLabel.text = @"Fee : ";
+            myLabel.text = eventFee;
+        }
+        //Event *event = (Event *)[eventArray objectAtIndex:indexPath.row];
+        
+        //cell.textLabel.text = [event name];
+        //cell.accessoryType = UITableViewCellAccessoryNone;
+    }else if (indexPath.section == 1) {
+        User *user = (User *)[memberArray objectAtIndex:indexPath.row];
+        
+        cell.textLabel.text = [user name];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.
