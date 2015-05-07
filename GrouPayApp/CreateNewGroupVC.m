@@ -16,6 +16,7 @@
 @interface CreateNewGroupVC ()
 
 @end
+//NSDictionary *jsonData2;
 
 @implementation CreateNewGroupVC
 @synthesize groupNameTextField, delegate;
@@ -47,12 +48,25 @@
     NSString *groupId = @"201";
     NSLog(@"USER ID: %@, ",user_id);
     
-    /*NSDictionary *myGroupDetails = [HttpUtil createGroup:user_id with:group_name];
+    
+    //submit the group name and the user id to teh server
+    //jsonData2 = [self performSelector:@selector(fetchDataFromUrl) withObject:nil];
+
+    
+    
+    NSString *groupID;
+    NSDictionary *myGroupDetails = [HttpUtil createGroup:user_id with:group_name];
     if(myGroupDetails !=nil){
         //Hide the UI and show the group name added to the list
+        groupID = myGroupDetails[@"group_id"];
+        NSString *groupName = myGroupDetails[@"name"];
+        NSString *admin_id =  myGroupDetails[@"admin_id"];
+        NSString *created_date =  myGroupDetails[@"created_date"];
+        
+        
     }else{
         NSLog(@"Group Not Created");
-    }*/
+    }
     //Push Modal Screen for adding a new Group
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -66,6 +80,15 @@
     }
     
 }
+
+- (NSDictionary *) fetchDataFromUrl{
+    //v1/api.php?api=get_user_groups&user_id=101
+    //get all the groups
+    NSString *parameters = [NSString stringWithFormat:@"api=get_user_groups&user_id=101"];
+    NSDictionary *json = [HttpUtil fetchJsonDataFromUrl:parameters];
+    return json;
+}
+
 
 -(void)cancelAction
 {

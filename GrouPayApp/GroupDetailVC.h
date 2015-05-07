@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "Group.h"
 
 @interface GroupDetailVC : UITableViewController
+//@property (nonatomic, retain) Group *group;
+@property (nonatomic, retain) NSMutableArray *eventArray;
+@property (nonatomic, retain) NSMutableArray *memberArray;
 
 @end

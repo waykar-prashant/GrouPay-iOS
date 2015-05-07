@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */; };
 		9555588B1AF968EA009AA8AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588A1AF968EA009AA8AA /* main.m */; };
 		9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588D1AF968EA009AA8AA /* AppDelegate.m */; };
 		955558911AF968EA009AA8AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558901AF968EA009AA8AA /* ViewController.m */; };
@@ -26,6 +27,7 @@
 		955558C71AF980E0009AA8AA /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558C61AF980E0009AA8AA /* group.png */; };
 		955558CA1AF9A60F009AA8AA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C91AF9A60F009AA8AA /* Group.m */; };
 		955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */; };
+		9558AD431AFBCC4300E583C7 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9558AD421AFBCC4300E583C7 /* Event.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		950D6CBE1AFC00B100DD83CD /* EventDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailVC.h; sourceTree = "<group>"; };
+		950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailVC.m; sourceTree = "<group>"; };
 		955558851AF968EA009AA8AA /* GrouPayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955558891AF968EA009AA8AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9555588A1AF968EA009AA8AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 		955558C91AF9A60F009AA8AA /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		955558CB1AF9B7E0009AA8AA /* GroupDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailVC.h; sourceTree = "<group>"; };
 		955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailVC.m; sourceTree = "<group>"; };
+		9558AD411AFBCC4300E583C7 /* Event.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		9558AD421AFBCC4300E583C7 /* Event.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +141,8 @@
 				955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */,
 				955558CB1AF9B7E0009AA8AA /* GroupDetailVC.h */,
 				955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */,
+				950D6CBE1AFC00B100DD83CD /* EventDetailVC.h */,
+				950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */,
 			);
 			path = GrouPayApp;
 			sourceTree = "<group>";
@@ -150,6 +158,8 @@
 				955558BE1AF973EB009AA8AA /* User.m */,
 				955558C81AF9A60F009AA8AA /* Group.h */,
 				955558C91AF9A60F009AA8AA /* Group.m */,
+				9558AD411AFBCC4300E583C7 /* Event.h */,
+				9558AD421AFBCC4300E583C7 /* Event.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -275,12 +285,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9558AD431AFBCC4300E583C7 /* Event.m in Sources */,
 				955558B31AF96928009AA8AA /* RegisterViewController.m in Sources */,
 				955558BF1AF973EB009AA8AA /* User.m in Sources */,
 				955558BC1AF97346009AA8AA /* HttpUtil.m in Sources */,
 				955558B01AF96915009AA8AA /* LoginViewController.m in Sources */,
 				955558C21AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m in Sources */,
 				955558911AF968EA009AA8AA /* ViewController.m in Sources */,
+				950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */,
 				955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */,
 				955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */,
 				955558CA1AF9A60F009AA8AA /* Group.m in Sources */,
@@ -482,6 +494,7 @@
 				955558AA1AF968EA009AA8AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		955558AB1AF968EA009AA8AA /* Build configuration list for PBXNativeTarget "GrouPayAppTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +503,7 @@
 				955558AD1AF968EA009AA8AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

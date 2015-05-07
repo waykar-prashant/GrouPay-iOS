@@ -11,8 +11,11 @@
 @interface HttpUtil : NSObject
 + (Boolean *) checkLogin: (NSString *) email with: (NSString *) password;
 + (NSDictionary *) createGroup: (NSString *) user_id with: (NSString *) groupName;
+
 + (Boolean) registerUser: (NSString *) email with: (NSString *) password par2: (NSString *) name par3: (NSString *) phone;
 + (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag;
 + (void) setUserDetails:(NSDictionary *) userDictionary;
++ (NSDictionary *) fetchJsonDataFromUrl: (NSString *) parameters;
 
+//extern NSString * const apiURL;
 @end

@@ -10,8 +10,12 @@
 #import "CreateNewGroupVC.h"
 #import "Group.h"
 #import "GroupDetailVC.h"
+#import "HttpUtil.h"
+//#import "AppDelegate.h"
 
 
+NSDictionary *jsonData1;
+//AppDelegate *appDelegate;
 @interface GroupsTabViewControllerTableViewController ()
 
 @property(nonatomic,strong) CreateNewGroupVC *addController;
@@ -25,40 +29,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Groups";
-    /*UIBarButtonItem *yourButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Your Button"
-                                   style:UIBarButtonSystemItemAdd
-                                   target:self
-                                   action:@selector(methodName:)];
-    */
-    //self.navigationController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(Add:)];
+
+    
+    jsonData1 = [self performSelector:@selector(fetchDataFromUrl) withObject:nil];
+
+    groupsArray = [[NSMutableArray alloc] init];
+    for (NSArray *arr in jsonData1) {
+        NSLog(@"Each Array : %@", [arr valueForKey:@"group_id"]);
+        Group *group = [[Group alloc] init];
+        [group setName:[arr valueForKey:@"name"]];
+        [group setGroup_id:[arr valueForKey:@"group_id"]];
+        [group setAdmin_id:[arr valueForKey:@"admin_id"]];
+        [group setCreated_date:[arr valueForKey:@"created_date"]];
+        //[[AppDelegate getGlobalGroups] addObject:group];
+        [[self groupsArray] addObject:group];
+    }
     
     UIBarButtonItem *addGroup = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGroup:)];
     
     NSArray *actionButtonItems = @[addGroup];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
-    groupsArray = [[NSMutableArray alloc] init];
-    Group *group = [[Group alloc] init];
-    [group setName:@"Group Name 1"];
-    [group setGroup_id:@"1"];
-    [group setAdmin_id:@"1"];
-    [group setCreated_date:@"12-5-2015"];
-    
-    Group *group2= [[Group alloc] init];
-    [group2 setName:@"Group Name 2"];
-    [group2 setGroup_id:@"2"];
-    [group2 setAdmin_id:@"2"];
-    [group2 setCreated_date:@"12-5-2015"];
-    
-    Group *group1 = [[Group alloc] init];
-    [group1 setName:@"Group Name 3"];
-    [group1 setGroup_id:@"3"];
-    [group1 setAdmin_id:@"3"];
-    [group1 setCreated_date:@"12-5-2015"];
-    [groupsArray addObject:group];
-    [groupsArray addObject:group1];
-    [groupsArray addObject:group2];
-    
+
     
     
     
@@ -73,6 +64,14 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (NSDictionary *) fetchDataFromUrl{
+    //v1/api.php?api=get_user_groups&user_id=101
+    //get all the groups
+    NSString *parameters = [NSString stringWithFormat:@"api=get_user_groups&user_id=101"];
+    NSDictionary *json = [HttpUtil fetchJsonDataFromUrl:parameters];
+    return json;
 }
 
 -(IBAction)addGroup:(id)sender
@@ -90,6 +89,7 @@
     Group *group = [[Group alloc] init];
     [group setName:strName];
     [group setGroup_id:strGroupId];
+    //[[AppDelegate getGlobalGroups] addObject:group];
     [groupsArray addObject:group];
     [self.tableView reloadData];
 }
@@ -109,6 +109,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    //return [[AppDelegate getGlobalGroups] count];
     return [groupsArray count];
 }
 
@@ -123,6 +124,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     Group *group = [groupsArray objectAtIndex:indexPath.row];
+    NSLog(@"Group Name : %@", [group name]);
+    //Group *group = [[AppDelegate getGlobalGroups] objectAtIndex:indexPath.row];//[groupsArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [group name];
     cell.textLabel.font = [UIFont boldSystemFontOfSize:12.0];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -138,6 +141,7 @@
     Group *group = [groupsArray objectAtIndex:indexPath.row];
     GroupDetailVC *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"group_detail"];
     detailViewController.title = [group name];
+    
     //NSDictionary *dictTemp = [arrItems objectAtIndex:indexPath.row];
     //detailViewController.strDesc = [dictTemp objectForKey:@"Desc"];
     // Pass the selected object to the new view controller.

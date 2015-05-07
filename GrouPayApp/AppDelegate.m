@@ -27,7 +27,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginController = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"login_controller"];
     self.window.rootViewController = loginController;
-
+    //globalGroups = [[NSMutableArray alloc] init];
     return YES;
 }
 

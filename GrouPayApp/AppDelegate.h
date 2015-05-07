@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+//NSMutableArray *globalGroups;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,6 +16,8 @@
 
 @property (nonatomic, retain) User *userDetails;
 + (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag;
+//+ (void) setGlobalCountries:(NSMutableArray *) globalGroups;
+//+ (NSMutableArray *) getGlobalGroups;
 
 @end
 
