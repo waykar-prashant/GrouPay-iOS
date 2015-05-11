@@ -9,6 +9,7 @@
 #import "GroupDetailVC.h"
 #import "Event.h"
 #import "User.h"
+#import "EventDetailVC.h"
 
 @interface GroupDetailVC ()
 
@@ -58,13 +59,6 @@
             [alert show];
         } else {
             
-            /*NSDictionary *jsonData = [NSJSONSerialization
-                                      JSONObjectWithData:urlData
-                                      options:NSJSONReadingMutableContainers
-                                      error:&error];
-            NSLog(@"JSON DATA :%@ ", jsonData);
-            //[self setUserDetails:jsonData];
-            success = [jsonData[@"group_id"] integerValue];*/
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             
             
@@ -196,12 +190,13 @@
     //get the name and the id
     if(indexPath.section == 0){
         //set selected index or trail type id
+        Event *event = (Event *)[eventArray objectAtIndex:indexPath.row];
         
-       /* MyFavoriteSelectTrails *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"MyFavoriteSelectTrails"];
-        listViewController.selectedTrailTypeId = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-        listViewController.totalTrailObjArray = totalTrailsObjArray;
-        listViewController.selectedResortId = selectedResortId;
-        [self.navigationController pushViewController:listViewController animated:YES];*/
+        EventDetailVC *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"event_details"];
+        listViewController.eventId = [event event_id];
+        listViewController.eventName = [event name];
+        
+        [self.navigationController pushViewController:listViewController animated:YES];
     }
 }
 

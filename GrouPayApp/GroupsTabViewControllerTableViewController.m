@@ -50,7 +50,8 @@ NSDictionary *jsonData1;
     NSArray *actionButtonItems = @[addGroup];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
 
-    
+    UIBarButtonItem* rightNavButton=[[UIBarButtonItem alloc] initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+    self.navigationItem.leftBarButtonItem =rightNavButton ;
     
     
     
@@ -72,6 +73,12 @@ NSDictionary *jsonData1;
     NSString *parameters = [NSString stringWithFormat:@"api=get_user_groups&user_id=101"];
     NSDictionary *json = [HttpUtil fetchJsonDataFromUrl:parameters];
     return json;
+}
+
+-(void) logout{
+    [self dismissViewControllerAnimated:YES completion:^{
+        NSLog(@"on completion");
+    }];
 }
 
 -(IBAction)addGroup:(id)sender

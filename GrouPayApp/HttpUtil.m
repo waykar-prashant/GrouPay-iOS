@@ -285,7 +285,7 @@ AppDelegate *appDelegate;
                     //NSString *uid = jsonData[@"user_id"];
                     //[appDelegate setUID:uid];
                     
-                    NSLog(@"created gorup SUCCESS-----UID %@ --", success);
+                    //NSLog(@"created gorup SUCCESS-----UID %@ --", success);
                     return jsonData;
                 } else {
                     
@@ -305,6 +305,158 @@ AppDelegate *appDelegate;
     @catch (NSException * e) {
         NSLog(@"Exception: %@", e);
         [self alertStatus:@"Group Creation Failed." :@"Error!" :0];
+    }
+    
+    return nil;
+}
+
+
++(NSDictionary *) getAllExpenses:(NSString *)user_id 
+{
+    NSInteger success = -1;
+    appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    @try {
+        
+        if([user_id isEqualToString:@""] ) {
+            [self alertStatus:@"Please enter a group name " :@"Creation of Group Failed!" :0];
+        } else {
+            NSString *post =[[NSString alloc] initWithFormat:@"api=get_expenses&user_id=%@", user_id];
+            NSLog(@"PostData: %@",post);
+            //v1/api.php?api=login&email=surbhi.sharma@sjsu.edu&password=abc
+            NSURL *url=[NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:url];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:postData];
+            
+            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+            
+            NSError *error = [[NSError alloc] init];
+            NSHTTPURLResponse *response = nil;
+            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            
+            NSLog(@"Response code: %ld", (long)[response statusCode]);
+            
+            if ([response statusCode] >= 200 && [response statusCode] < 300)
+            {
+                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+                NSLog(@"Response ==> %@", responseData);
+                
+                NSError *error = nil;
+                NSDictionary *jsonData = [NSJSONSerialization
+                                          JSONObjectWithData:urlData
+                                          options:NSJSONReadingMutableContainers
+                                          error:&error];
+                NSLog(@"JSON DATA :%@ ", jsonData);
+                //[self setUserDetails:jsonData];
+                
+                
+                if(jsonData !=nil)
+                {
+                    //NSString *uid = jsonData[@"user_id"];
+                    //[appDelegate setUID:uid];
+                    
+                    //NSLog(@"created gorup SUCCESS-----UID %@ --", success);
+                    return jsonData;
+                } else {
+                    
+                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    [self alertStatus:error_msg :@"Connection Failed!" :0];
+                    return nil;
+                    
+                }
+                
+            } else {
+                //if (error) NSLog(@"Error: %@", error);
+                [self alertStatus:@"Connection Failed" :@" Failed!" :0];
+                return nil;
+            }
+        }
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Error." :@"Error!" :0];
+    }
+    
+    return nil;
+}
+
++(NSDictionary *) makePayment:(NSString *)user_id with:(NSString *)eventId and:(NSString *) amount
+{
+    NSInteger success = -1;
+    appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    @try {
+        
+        if([amount isEqualToString:@""]) {
+            [self alertStatus:@"Please enter a group name " :@"Creation of Group Failed!" :0];
+        } else {
+            NSString *post =[[NSString alloc] initWithFormat:@"api=pay_for_event&user_id=%@&event_id=%@&amount=%@", user_id, eventId, amount];
+            NSLog(@"PostData: %@",post);
+            //v1/api.php?api=login&email=surbhi.sharma@sjsu.edu&password=abc
+            NSURL *url=[NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
+            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+            NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+            [request setURL:url];
+            [request setHTTPMethod:@"POST"];
+            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+            [request setHTTPBody:postData];
+            
+            //[NSURLRequest setAllowsAnyHTTPSCertificate:YES forHost:[url host]];
+            
+            NSError *error = [[NSError alloc] init];
+            NSHTTPURLResponse *response = nil;
+            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+            
+            NSLog(@"Response code: %ld", (long)[response statusCode]);
+            
+            if ([response statusCode] >= 200 && [response statusCode] < 300)
+            {
+                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+                NSLog(@"Response ==> %@", responseData);
+                
+                NSError *error = nil;
+                NSDictionary *jsonData = [NSJSONSerialization
+                                          JSONObjectWithData:urlData
+                                          options:NSJSONReadingMutableContainers
+                                          error:&error];
+                NSLog(@"JSON DATA :%@ ", jsonData);
+                //[self setUserDetails:jsonData];
+                //success = [jsonData[@"group_id"] integerValue];
+                //NSLog(@"Success: %ld",(long)success);
+                
+                if(jsonData != nil)
+                {
+                    //NSString *uid = jsonData[@"user_id"];
+                    //[appDelegate setUID:uid];
+                    
+                    //NSLog(@"created gorup SUCCESS-----UID %@ --", success);
+                    return jsonData;
+                } else {
+                    
+                    NSString *error_msg = (NSString *) jsonData[@"error_message"];
+                    [self alertStatus:error_msg :@"Payment Failed!" :0];
+                    return nil;
+                    
+                }
+                
+            } else {
+                //if (error) NSLog(@"Error: %@", error);
+                [self alertStatus:@"Connection Failed" :@"Payment Failed!" :0];
+                return nil;
+            }
+        }
+    }
+    @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+        [self alertStatus:@"Payment Failed." :@"Error!" :0];
     }
     
     return nil;

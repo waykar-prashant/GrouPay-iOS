@@ -22,7 +22,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="surbhi@sjsu.edu" borderStyle="roundedRect" placeholder="You Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fj9-y0-wbS">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="surbhi.sharma@sjsu.edu" borderStyle="roundedRect" placeholder="You Email address" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fj9-y0-wbS">
                                 <rect key="frame" x="16" y="69" width="288" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -44,6 +44,7 @@
                                 <state key="normal" title="Register" backgroundImage="button.png"/>
                                 <connections>
                                     <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQk-cp-QQp"/>
+                                    <segue destination="uqz-hd-bL8" kind="show" id="6dv-Oy-exF"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -129,14 +130,14 @@
             </objects>
             <point key="canvasLocation" x="602" y="-10"/>
         </scene>
-        <!--Root View Controller-->
+        <!--My GrouPay-->
         <scene sceneID="RSn-ev-nQY">
             <objects>
-                <tableViewController id="S0d-VO-aJ4" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="e2U-Hn-Dmp">
+                <tableViewController id="S0d-VO-aJ4" customClass="MyGroupayVC" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="e2U-Hn-Dmp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KxW-pr-Ol8">
                                 <autoresizingMask key="autoresizingMask"/>
@@ -150,7 +151,7 @@
                             <outlet property="delegate" destination="S0d-VO-aJ4" id="5zP-8m-zv7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="zhG-pP-jwI"/>
+                    <navigationItem key="navigationItem" title="My GrouPay" id="zhG-pP-jwI"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vmf-vy-YR6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -259,19 +260,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="j1t-Tt-EyQ">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="wwP-Tb-CuV" detailTextLabel="KXL-A5-Ing" style="IBUITableViewCellStyleValue1" id="j1t-Tt-EyQ">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j1t-Tt-EyQ" id="NUM-eP-aVj">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VW3-3e-R2Z">
-                                            <rect key="frame" x="246" y="11" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wwP-Tb-CuV">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KXL-A5-Ing">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="AfM-Pe-ifT" kind="presentation" trigger="accessoryAction" id="yAv-Ny-hXK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -280,13 +290,61 @@
                         </connections>
                     </tableView>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
-                    <connections>
-                        <outlet property="myLabel" destination="VW3-3e-R2Z" id="bav-xa-o0E"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIv-Y5-Omt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="1707"/>
+            <point key="canvasLocation" x="1920" y="1739"/>
+        </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="1ID-gq-b0K">
+            <objects>
+                <viewController storyboardIdentifier="payment" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AfM-Pe-ifT" customClass="PaymentViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ui8-tZ-6vN"/>
+                        <viewControllerLayoutGuide type="bottom" id="1yS-Rp-jfq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CBX-wP-Hnx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pay For Event ($)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOS-rG-R6a">
+                                <rect key="frame" x="22" y="201" width="131" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ag-nb-Rcc">
+                                <rect key="frame" x="98" y="269" width="128" height="40"/>
+                                <state key="normal" title="Make Payment" backgroundImage="button.png">
+                                    <color key="titleColor" red="0.99831385153208729" green="0.99244069109993671" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="makePayment:" destination="AfM-Pe-ifT" eventType="touchUpInside" id="SX5-aY-PvY"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N71-wr-Zcm">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="hab-DW-LOE"/>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3z-O9-ndg">
+                                <rect key="frame" x="176" y="197" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="e09-kJ-odX"/>
+                    <connections>
+                        <outlet property="payText" destination="f3z-O9-ndg" id="ZaZ-Co-Oh1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bbU-gI-MWe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2488" y="1244"/>
         </scene>
         <!--Group DetailVC-->
         <scene sceneID="NBS-zh-C0L">
@@ -354,7 +412,7 @@
             </objects>
             <point key="canvasLocation" x="254" y="669"/>
         </scene>
-        <!--Root View Controller-->
+        <!--My GrouPay-->
         <scene sceneID="hab-ex-PLO">
             <objects>
                 <tableViewController id="H9T-kn-lB8" sceneMemberID="viewController">
@@ -375,7 +433,7 @@
                             <outlet property="delegate" destination="H9T-kn-lB8" id="E6m-mV-xyp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="yBR-5S-7kN"/>
+                    <navigationItem key="navigationItem" title="My GrouPay" id="yBR-5S-7kN"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ILF-9n-CNf" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -10,6 +10,6 @@
 
 @implementation User
 
-@synthesize name, email, user_id, phone, password;
+@synthesize name, email, user_id, phone, password, status, paid;
 
 @end

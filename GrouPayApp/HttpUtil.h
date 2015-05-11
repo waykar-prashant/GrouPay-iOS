@@ -16,6 +16,7 @@
 + (void) alertStatus:(NSString *)msg :(NSString *)title :(int) tag;
 + (void) setUserDetails:(NSDictionary *) userDictionary;
 + (NSDictionary *) fetchJsonDataFromUrl: (NSString *) parameters;
-
++(NSDictionary *) makePayment:(NSString *)user_id with:(NSString *)eventId and:(NSString *) amount;
 //extern NSString * const apiURL;
++(NSDictionary *) getAllExpenses:(NSString *)user_id ;
 @end

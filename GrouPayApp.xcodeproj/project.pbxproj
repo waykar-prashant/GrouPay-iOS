@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */; };
+		950D6CC31AFC2A2900DD83CD /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CC21AFC2A2900DD83CD /* PaymentViewController.m */; };
+		950D6CC91AFC38B400DD83CD /* MyGroupayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CC81AFC38B400DD83CD /* MyGroupayVC.m */; };
 		9555588B1AF968EA009AA8AA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588A1AF968EA009AA8AA /* main.m */; };
 		9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9555588D1AF968EA009AA8AA /* AppDelegate.m */; };
 		955558911AF968EA009AA8AA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558901AF968EA009AA8AA /* ViewController.m */; };
@@ -43,6 +45,10 @@
 /* Begin PBXFileReference section */
 		950D6CBE1AFC00B100DD83CD /* EventDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailVC.h; sourceTree = "<group>"; };
 		950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailVC.m; sourceTree = "<group>"; };
+		950D6CC11AFC2A2900DD83CD /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
+		950D6CC21AFC2A2900DD83CD /* PaymentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaymentViewController.m; sourceTree = "<group>"; };
+		950D6CC71AFC38B400DD83CD /* MyGroupayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGroupayVC.h; sourceTree = "<group>"; };
+		950D6CC81AFC38B400DD83CD /* MyGroupayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGroupayVC.m; sourceTree = "<group>"; };
 		955558851AF968EA009AA8AA /* GrouPayApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GrouPayApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955558891AF968EA009AA8AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9555588A1AF968EA009AA8AA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -143,6 +149,10 @@
 				955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */,
 				950D6CBE1AFC00B100DD83CD /* EventDetailVC.h */,
 				950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */,
+				950D6CC11AFC2A2900DD83CD /* PaymentViewController.h */,
+				950D6CC21AFC2A2900DD83CD /* PaymentViewController.m */,
+				950D6CC71AFC38B400DD83CD /* MyGroupayVC.h */,
+				950D6CC81AFC38B400DD83CD /* MyGroupayVC.m */,
 			);
 			path = GrouPayApp;
 			sourceTree = "<group>";
@@ -290,8 +300,10 @@
 				955558BF1AF973EB009AA8AA /* User.m in Sources */,
 				955558BC1AF97346009AA8AA /* HttpUtil.m in Sources */,
 				955558B01AF96915009AA8AA /* LoginViewController.m in Sources */,
+				950D6CC31AFC2A2900DD83CD /* PaymentViewController.m in Sources */,
 				955558C21AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m in Sources */,
 				955558911AF968EA009AA8AA /* ViewController.m in Sources */,
+				950D6CC91AFC38B400DD83CD /* MyGroupayVC.m in Sources */,
 				950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */,
 				955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */,
 				955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */,

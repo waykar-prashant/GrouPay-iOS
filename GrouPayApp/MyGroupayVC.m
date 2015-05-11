@@ -1,48 +1,47 @@
 //
-//  EventDetailVC.m
+//  MyGroupayVC.m
 //  GrouPayApp
 //
 //  Created by Prashant S Waykar on 5/7/15.
 //  Copyright (c) 2015 Prashant S Waykar. All rights reserved.
 //
 
-#import "EventDetailVC.h"
-#import "User.h"
+#import "MyGroupayVC.h"
 #import "AppDelegate.h"
-#import "PaymentViewController.h"
-
-
-AppDelegate *appDel;
-@interface EventDetailVC ()
+@interface MyGroupayVC ()
 
 @end
-
-NSString *eName;
-NSString *eStartTime;
-NSString *eEndTime;
-NSString *eDesc;
-NSNumber *eFee;
-
-
-@implementation EventDetailVC
-@synthesize eventId, eventName, eventDesc, eventFee, youPaid, memberArray, myLabel;
+AppDelegate *appDel1;
+@implementation MyGroupayVC
+@synthesize memberArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSLog(@"Event Details VC %@", eventId);
+    memberArray = [[NSMutableArray alloc] init];
+    appDel1 = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [self fetchGroups];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    memberArray = [[NSMutableArray alloc] init];
-    appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [self fetchEventDetails];
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
 
-- (void)fetchEventDetails {
-    NSString *post =[[NSString alloc] initWithFormat:@"api=get_event_details&event_id=%@", eventId];
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0){
+        return @"Event Details";
+    }else if(section == 1){
+        return @"Event Members";
+    }
+    return @"";
+}
+
+- (void)fetchGroups {
+    NSString *post =[[NSString alloc] initWithFormat:@"api=get_expenses&user_id=%@", [appDel1 userDetails].user_id];
     NSURL *url=[NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -71,18 +70,22 @@ NSNumber *eFee;
              NSLog(@"JSON DATA :%@ ", jsonData);
              //[self setUserDetails:jsonData];
              success = [jsonData[@"group_id"] integerValue];*/
-            NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-            NSLog(@"Event Details : %@", jsonData);
-            eName = [jsonData valueForKey:@"name"];
-            eStartTime = [jsonData valueForKey:@"start_time"];
-            eEndTime = [jsonData valueForKey:@"end_time"];
-            eDesc = [jsonData valueForKey:@"description"];
-            eFee = [jsonData valueForKey:@"fee"];
-            eName = [jsonData valueForKey:@"name"];
+            NSArray *userArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             
-            
-            
+            NSLog(@"JSON DATA %@", userArray);
             [memberArray removeAllObjects];
+            for (int i = 0; i < [userArray count]; i++) {
+                NSString *name = [[userArray objectAtIndex:i] valueForKey:@"name"];
+                NSString *eventId = [[userArray objectAtIndex:i] valueForKey:@"event_id"];
+                NSString *balance = [[userArray objectAtIndex:i] valueForKey:@"balance"];
+                User *user = [[User alloc] init];
+                [user setName:name];
+                [user setUser_id:eventId];
+                [user setEmail:balance];
+[[self memberArray] addObject:user];
+                
+                // NSString *balance = [[userArray objectAtIndex:i] valueForKey:@"balance"];
+            }
             /*NSArray *eventArray = [jsonData valueForKey:@"1"];
             //event_id, name, description, start_time, end_time, creator_id, fee
             for(int i = 0; i < [eventArray count]; i++){
@@ -103,7 +106,7 @@ NSNumber *eFee;
                 [event setCreator_id:creatorId];
                 [event setFee:fee];
                 [[self eventArray] addObject:event];
-            }*/
+            }
             
             NSArray *userArray = [jsonData valueForKey:@"0"];
             //user_id, name, email, phone_no, password
@@ -113,18 +116,12 @@ NSNumber *eFee;
                 NSString *userId = [[userArray objectAtIndex:i] valueForKey:@"user_id"];
                 NSString *email = [[userArray objectAtIndex:i] valueForKey:@"email"];
                 
-                NSString *status = [[userArray objectAtIndex:i] valueForKey:@"status"];
-                NSString *paid = [[userArray objectAtIndex:i] valueForKey:@"paid"];
-                
                 User *user = [[User alloc] init];
                 [user setName:name];
                 [user setUser_id:userId];
                 [user setEmail:email];
-                [user setStatus:status];
-                [user setPaid:paid];
-                
                 [[self memberArray] addObject:user];
-            }
+            }*/
             /*[array enumerateObjectsUsingBlock:^(NSDictionary *blockArray, NSUInteger idx, BOOL *stop) {
              
              NSLog(@"EACH BOCK %@", blockArray);
@@ -155,35 +152,18 @@ NSNumber *eFee;
     }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    if(section == 0){
-        return 5;
-    }else if (section == 1){
-        return [memberArray count];
-    }
-    return 0;
-}
-
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0){
-        return @"Event Information";
-    }else if(section == 1){
-        return @"Event Members";
-    }
-    return @"";
+    return [memberArray count];
 }
 
 
@@ -196,104 +176,18 @@ NSNumber *eFee;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
         
     }
-    
-    //cell.accessoryType = UITableViewCellAccessoryNone;
-    //name, description, start_time, end_time, creator_id, fee,
-    if(indexPath.section == 0){
-        
-        if(indexPath.row ==0){
-            cell.textLabel.text = @"Event Name : ";
-            cell.detailTextLabel.text = eName;
-           
-            //myLabel.text = eventName;
-        }else if(indexPath.row == 1){
-            cell.textLabel.text = @"Description : ";
-            cell.detailTextLabel.text = eDesc;
-            //myLabel.text = eventDesc;
-        }else if(indexPath.row == 2){
-            cell.textLabel.text = @"Start Time : ";
-            //myLabel.text = @"08-12-2015";
-             cell.detailTextLabel.text = eStartTime;
-        }else if(indexPath.row == 3){
-            cell.textLabel.text = @"End Time : ";
-             cell.detailTextLabel.text = eEndTime;
-            //myLabel.text =  @"08-12-2015";
-        }else if(indexPath.row == 4){
-            cell.textLabel.text = @"Fee : ";
-             cell.detailTextLabel.text = eFee;
-           // myLabel.text = eventFee;
-        }
-        cell.detailTextLabel.textColor = [UIColor grayColor];
-        //cell.detailTextLabel.font = [UIFont systemFontOfSize:17];
-        cell.textLabel.textColor = [UIColor redColor];
-        //cell.textLabel.font = [UIFont systemFontOfSize:21];
-        //Event *event = (Event *)[eventArray objectAtIndex:indexPath.row];
-        
-        //cell.textLabel.text = [event name];
-        //cell.accessoryType = UITableViewCellAccessoryNone;
-    }else if (indexPath.section == 1) {
-        
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.section == 0) {
         User *user = (User *)[memberArray objectAtIndex:indexPath.row];
-         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        /*if([appDel userDetails].user_id == user.user_id){
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }else{
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }*/
-        cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
+        
         cell.textLabel.text = [user name];
-        NSString *numStr;
-        if([user paid] < eFee){
-            numStr = [NSString stringWithFormat:@" : You Owe To Event   $%@",[[NSNumber numberWithFloat:([eFee floatValue] - [[user paid] floatValue])] stringValue]];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
-            cell.textLabel.textColor = [UIColor redColor];
-            
-        }else if([user paid] > eFee){
-            numStr = [NSString stringWithFormat:@" : You Get Back   $%@",[[NSNumber numberWithFloat:([eFee floatValue] - [[user paid] floatValue])] stringValue]];
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
-            cell.textLabel.textColor = [UIColor greenColor];
-            
-        }else if([user paid] == eFee){
-            numStr = @" : Settled Up";
-            cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
-            //cell.textLabel.textColor = [UIColor grayColor];
-        }
-        cell.detailTextLabel.text = numStr;
-        NSLog(@"U1 : %@  -- %@", [appDel userDetails].user_id, user.user_id );
-       
+        NSString *srt = [NSString stringWithFormat:@"%@", [user email]];
+        cell.detailTextLabel.text = srt;
+        cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
     return cell;
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    //get the name and the id
-    if(indexPath.section == 1){
-        //set selected index or trail type id
-        
-        User *user = (User *)[memberArray objectAtIndex:indexPath.row];
-        if([[appDel userDetails].user_id isEqualToString:user.user_id]){
-            NSLog(@"working");
-            PaymentViewController *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"payment"];
-            [listViewController setTitle:eventName];
-            listViewController.eventId = eventId;
-            listViewController.userId = user.user_id;
-            //uid, eventid, amt
-            
-            /*Event *event = (Event *)[eventArray objectAtIndex:indexPath.row];
-            
-            EventDetailVC *listViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"event_details"];
-            listViewController.eventId = [event event_id];
-            listViewController.eventName = [event name];
-            */
-            [self.navigationController pushViewController:listViewController animated:YES];
-        }else{
-            //cell.accessoryType = UITableViewCellAccessoryNone;
-        }
-    }
-}
-
-
 
 
 /*
