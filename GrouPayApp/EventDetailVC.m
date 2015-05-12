@@ -34,12 +34,15 @@ NSNumber *eFee;
     // self.clearsSelectionOnViewWillAppear = NO;
     memberArray = [[NSMutableArray alloc] init];
     appDel = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [self fetchEventDetails];
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchEventDetails];
+}
 
 - (void)fetchEventDetails {
     NSString *post =[[NSString alloc] initWithFormat:@"api=get_event_details&event_id=%@", eventId];
@@ -164,7 +167,7 @@ NSNumber *eFee;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -174,6 +177,8 @@ NSNumber *eFee;
     }else if (section == 1){
         return [memberArray count];
     }
+    else
+        return 1;
     return 0;
 }
 
@@ -183,6 +188,8 @@ NSNumber *eFee;
     }else if(section == 1){
         return @"Event Members";
     }
+    else
+        return @"Leave Event";
     return @"";
 }
 
@@ -261,6 +268,12 @@ NSNumber *eFee;
         cell.detailTextLabel.text = numStr;
         NSLog(@"U1 : %@  -- %@", [appDel userDetails].user_id, user.user_id );
        
+    }
+    else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveEventCell"];
+        UIButton *btnLeaveGroup = (UIButton *)[cell viewWithTag:1];
+        [btnLeaveGroup setTitle:@"Leave Event" forState:UIControlStateNormal];
+        return cell;
     }
     
     return cell;

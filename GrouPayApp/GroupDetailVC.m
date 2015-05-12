@@ -28,12 +28,26 @@
     NSLog(@"Selected goup name : %@", [group created_date]);*/
     eventArray = [[NSMutableArray alloc] init];
     memberArray = [[NSMutableArray alloc] init];
-    [self fetchGroups];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    //add event button
+    UIBarButtonItem *btnAddEvent = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addEvent:)];
+    [self.navigationItem setRightBarButtonItem:btnAddEvent];
+    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchGroups];
+}
+
+- (IBAction)addEvent:(id)sender {
+    AddEventViewController *addEventVC = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEventViewController"];
+    addEventVC.selectedGroup = _selectedGroup;
+    [self.navigationController pushViewController:addEventVC animated:YES];
 }
 
 - (void)fetchGroups {
@@ -139,7 +153,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -149,6 +163,9 @@
     }else if (section == 1){
         return [memberArray count];
     }
+    else
+        return 1;
+    
     return 0;
 }
 
@@ -158,6 +175,8 @@
     }else if(section == 1){
         return @"Group Members";
     }
+    else
+        return @"Leave Group";
     return @"";
 }
 
@@ -182,7 +201,12 @@
         cell.textLabel.text = [user name];
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
+    else {
+       UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveGroupCell"];
+        UIButton *btnLeaveGroup = (UIButton *)[cell viewWithTag:1];
+        [btnLeaveGroup setTitle:@"Leave Group" forState:UIControlStateNormal];
+        return cell;
+    }
     return cell;
 }
 

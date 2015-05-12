@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8AFF3F6E1B011769000BC7CB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F6D1B011769000BC7CB /* AddEventViewController.m */; };
+		8AFF3F711B01230D000BC7CB /* GPNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F701B01230D000BC7CB /* GPNetworkingManager.m */; };
+		8AFF3F741B0131F6000BC7CB /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F731B0131F6000BC7CB /* SettingsTableViewController.m */; };
+		8AFF3F761B013394000BC7CB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AFF3F751B013394000BC7CB /* MessageUI.framework */; };
 		950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */; };
 		950D6CC31AFC2A2900DD83CD /* PaymentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CC21AFC2A2900DD83CD /* PaymentViewController.m */; };
 		950D6CC91AFC38B400DD83CD /* MyGroupayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D6CC81AFC38B400DD83CD /* MyGroupayVC.m */; };
@@ -43,6 +47,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8AFF3F6C1B011769000BC7CB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
+		8AFF3F6D1B011769000BC7CB /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
+		8AFF3F6F1B01230D000BC7CB /* GPNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPNetworkingManager.h; sourceTree = "<group>"; };
+		8AFF3F701B01230D000BC7CB /* GPNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPNetworkingManager.m; sourceTree = "<group>"; };
+		8AFF3F721B0131F6000BC7CB /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		8AFF3F731B0131F6000BC7CB /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		8AFF3F751B013394000BC7CB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		950D6CBE1AFC00B100DD83CD /* EventDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailVC.h; sourceTree = "<group>"; };
 		950D6CBF1AFC00B100DD83CD /* EventDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailVC.m; sourceTree = "<group>"; };
 		950D6CC11AFC2A2900DD83CD /* PaymentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaymentViewController.h; sourceTree = "<group>"; };
@@ -91,6 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AFF3F761B013394000BC7CB /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +119,7 @@
 		9555587C1AF968EA009AA8AA = {
 			isa = PBXGroup;
 			children = (
+				8AFF3F751B013394000BC7CB /* MessageUI.framework */,
 				955558C61AF980E0009AA8AA /* group.png */,
 				955558871AF968EA009AA8AA /* GrouPayApp */,
 				955558A11AF968EA009AA8AA /* GrouPayAppTests */,
@@ -153,6 +166,12 @@
 				950D6CC21AFC2A2900DD83CD /* PaymentViewController.m */,
 				950D6CC71AFC38B400DD83CD /* MyGroupayVC.h */,
 				950D6CC81AFC38B400DD83CD /* MyGroupayVC.m */,
+				8AFF3F6C1B011769000BC7CB /* AddEventViewController.h */,
+				8AFF3F6D1B011769000BC7CB /* AddEventViewController.m */,
+				8AFF3F6F1B01230D000BC7CB /* GPNetworkingManager.h */,
+				8AFF3F701B01230D000BC7CB /* GPNetworkingManager.m */,
+				8AFF3F721B0131F6000BC7CB /* SettingsTableViewController.h */,
+				8AFF3F731B0131F6000BC7CB /* SettingsTableViewController.m */,
 			);
 			path = GrouPayApp;
 			sourceTree = "<group>";
@@ -307,7 +326,10 @@
 				950D6CC01AFC00B100DD83CD /* EventDetailVC.m in Sources */,
 				955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */,
 				955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */,
+				8AFF3F741B0131F6000BC7CB /* SettingsTableViewController.m in Sources */,
 				955558CA1AF9A60F009AA8AA /* Group.m in Sources */,
+				8AFF3F711B01230D000BC7CB /* GPNetworkingManager.m in Sources */,
+				8AFF3F6E1B011769000BC7CB /* AddEventViewController.m in Sources */,
 				9555588E1AF968EA009AA8AA /* AppDelegate.m in Sources */,
 				9555588B1AF968EA009AA8AA /* main.m in Sources */,
 			);

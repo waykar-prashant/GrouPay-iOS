@@ -50,8 +50,8 @@ NSDictionary *jsonData1;
     NSArray *actionButtonItems = @[addGroup];
     self.navigationItem.rightBarButtonItems = actionButtonItems;
 
-    UIBarButtonItem* rightNavButton=[[UIBarButtonItem alloc] initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
-    self.navigationItem.leftBarButtonItem =rightNavButton ;
+//    UIBarButtonItem* rightNavButton=[[UIBarButtonItem alloc] initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+//    self.navigationItem.leftBarButtonItem =rightNavButton ;
     
     
     
@@ -148,7 +148,7 @@ NSDictionary *jsonData1;
     Group *group = [groupsArray objectAtIndex:indexPath.row];
     GroupDetailVC *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"group_detail"];
     detailViewController.title = [group name];
-    
+    detailViewController.selectedGroup = group;
     //NSDictionary *dictTemp = [arrItems objectAtIndex:indexPath.row];
     //detailViewController.strDesc = [dictTemp objectForKey:@"Desc"];
     // Pass the selected object to the new view controller.
@@ -157,25 +157,48 @@ NSDictionary *jsonData1;
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        Group *group = [groupsArray objectAtIndex:indexPath.row];
+        NSString *post =[[NSString alloc] initWithFormat:@"api=delete_group&group_id=%@", group.group_id];
+        NSURL *url = [NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
+        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        
+        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if(data && !connectionError) {
+                NSString *responseData = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", responseData);
+                NSError *error = nil;
+                NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+                if([[responseDictionary allKeys] count] > 0) {
+                    [groupsArray removeObjectAtIndex:indexPath.row];
+                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                }
+            }
+            else {
+            }
+        }];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
