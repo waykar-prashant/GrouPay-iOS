@@ -10,6 +10,7 @@
 #import "Event.h"
 #import "User.h"
 #import "EventDetailVC.h"
+#import "AppDelegate.h"
 
 @interface GroupDetailVC ()
 
@@ -42,6 +43,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self fetchGroups];
+    //[self fetchEvents];
 }
 
 - (IBAction)addEvent:(id)sender {
@@ -50,8 +52,56 @@
     [self.navigationController pushViewController:addEventVC animated:YES];
 }
 
+- (void)fetchEvents {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = appDelegate.userDetails;
+    NSString *post =[[NSString alloc] initWithFormat:@"api=get_events&user_id=%@", currentUser.user_id];
+    NSURL *url = [NSURL URLWithString:@"http://iqmicrosystems.com/groupay/v1/api.php?"];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    [urlRequest setURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPBody:postData];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(responseData && !error) {
+        NSString *responseString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", responseString);
+        NSError *error = nil;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+        if([[responseDictionary allKeys] count] > 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success !" message:@"Event added successfully !" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        default:
+            break;
+    }
+}
+
 - (void)fetchGroups {
-    NSString *post =[[NSString alloc] initWithFormat:@"api=get_group_info&group_id=16"];
+    NSString *post =[[NSString alloc] initWithFormat:@"api=get_group_info&group_id=%@", _selectedGroup.group_id];
     NSURL *url=[NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
@@ -75,20 +125,19 @@
             
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             
-            
             [eventArray removeAllObjects];
             [memberArray removeAllObjects];
-            NSArray *eventArray = [jsonData valueForKey:@"1"];
+            NSArray *eventsArray = [jsonData valueForKey:@"1"];
             //event_id, name, description, start_time, end_time, creator_id, fee
-            for(int i = 0; i < [eventArray count]; i++){
+            for(int i = 0; i < [eventsArray count]; i++){
                 //[[[jsonData valueForKey:@"1"] objectAtIndex:i] valueForKey:@"name"]
-                NSString *eventName = [[eventArray objectAtIndex:i] valueForKey:@"name"];
-                NSString *eventId = [[eventArray objectAtIndex:i] valueForKey:@"event_id"];
-                NSString *description = [[eventArray objectAtIndex:i] valueForKey:@"description"];
-                NSString *startTime = [[eventArray objectAtIndex:i] valueForKey:@"start_time"];
-                NSString *endTime = [[eventArray objectAtIndex:i] valueForKey:@"end_time"];
-                NSString *creatorId = [[eventArray objectAtIndex:i] valueForKey:@"creator_id"];
-                NSString *fee = [[eventArray objectAtIndex:i] valueForKey:@"fee"];
+                NSString *eventName = [[eventsArray objectAtIndex:i] valueForKey:@"name"];
+                NSString *eventId = [[eventsArray objectAtIndex:i] valueForKey:@"event_id"];
+                NSString *description = [[eventsArray objectAtIndex:i] valueForKey:@"description"];
+                NSString *startTime = [[eventsArray objectAtIndex:i] valueForKey:@"start_time"];
+                NSString *endTime = [[eventsArray objectAtIndex:i] valueForKey:@"end_time"];
+                NSString *creatorId = [[eventsArray objectAtIndex:i] valueForKey:@"creator_id"];
+                NSString *fee = [[eventsArray objectAtIndex:i] valueForKey:@"fee"];
                 Event *event = [[Event alloc] init];
                 [event setName:eventName];
                 [event setEvent_id:eventId];
@@ -160,7 +209,8 @@
     // Return the number of rows in the section.
     if(section == 0){
         return [eventArray count];
-    }else if (section == 1){
+    }
+    else if (section == 1){
         return [memberArray count];
     }
     else
@@ -169,14 +219,16 @@
     return 0;
 }
 
--(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    if(section == 0){
+- (NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    if(section == 0) {
         return @"My Events";
-    }else if(section == 1){
+    }
+    else if(section == 1) {
         return @"Group Members";
     }
     else
         return @"Leave Group";
+    
     return @"";
 }
 
@@ -190,7 +242,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    if(indexPath.section == 0){
+    if(indexPath.section == 0) {
         Event *event = (Event *)[eventArray objectAtIndex:indexPath.row];
         
         cell.textLabel.text = [event name];
@@ -205,6 +257,11 @@
        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveGroupCell"];
         UIButton *btnLeaveGroup = (UIButton *)[cell viewWithTag:1];
         [btnLeaveGroup setTitle:@"Leave Group" forState:UIControlStateNormal];
+        [btnLeaveGroup addTarget:self action:@selector(leaveGroup:) forControlEvents:UIControlEventTouchUpInside];
+        btnLeaveGroup.layer.shadowColor = [UIColor grayColor].CGColor;
+        btnLeaveGroup.layer.shadowOpacity = 0.5;
+        btnLeaveGroup.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        [btnLeaveGroup.layer setMasksToBounds:YES];
         return cell;
     }
     return cell;
@@ -224,6 +281,43 @@
     }
 }
 
+- (IBAction)leaveGroup:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = appDelegate.userDetails;
+    NSString *post =[[NSString alloc] initWithFormat:@"api=leave_group&user_id=%@&group_id=%@", currentUser.user_id, _selectedGroup.group_id];
+    NSURL *url = [NSURL URLWithString:@"http://iqmicrosystems.com/groupay/v1/api.php?"];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    [urlRequest setURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPBody:postData];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(responseData && !error) {
+        NSString *responseString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", responseString);
+        NSError *error = nil;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+        if([[responseDictionary allKeys] count] > 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success !" message:@"Group left successfully !" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

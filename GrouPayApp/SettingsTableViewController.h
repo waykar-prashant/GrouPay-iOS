@@ -2,7 +2,7 @@
 //  SettingsTableViewController.h
 //  GrouPayApp
 //
-//  Created by Salil Shahane on 12/05/15.
+//  Created by Prashant Waykar on 12/05/15.
 //  Copyright (c) 2015 Prashant S Waykar. All rights reserved.
 //
 

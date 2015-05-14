@@ -19,10 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    sleep(2);
-    UIImageView *background=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default@2x.png"]];
-    [background setFrame:CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
-    [self.window addSubview:background];
+//    sleep(2);
+//    UIImageView *background=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Default@2x.png"]];
+//    [background setFrame:CGRectMake(0, 0, self.window.frame.size.width, self.window.frame.size.height)];
+//    [self.window addSubview:background];
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     LoginViewController *loginController = (LoginViewController *) [storyboard instantiateViewControllerWithIdentifier:@"login_controller"];

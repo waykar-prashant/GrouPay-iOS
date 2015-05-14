@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A3001D41B05334A0053C402 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3001D31B05334A0053C402 /* setting@2x.png */; };
+		8A3001DB1B0535060053C402 /* group@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3001D91B0535060053C402 /* group@2x.png */; };
+		8A3001DC1B0535060053C402 /* group2@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3001DA1B0535060053C402 /* group2@3x.png */; };
+		8A3001DE1B0536280053C402 /* checklist@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3001DD1B0536280053C402 /* checklist@3x.png */; };
+		8A3001E01B05366B0053C402 /* checklist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3001DF1B05366B0053C402 /* checklist@2x.png */; };
+		8A5177971B02776500B33DA7 /* GrouPay_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8A5177961B02776500B33DA7 /* GrouPay_icon.jpg */; };
+		8A58D45A1B03BA2D001095C9 /* setting@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A58D4591B03BA2D001095C9 /* setting@3x.png */; };
+		8AF0ED641B04ECFE005B76E1 /* UserGroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AF0ED631B04ECFE005B76E1 /* UserGroupsViewController.m */; };
 		8AFF3F6E1B011769000BC7CB /* AddEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F6D1B011769000BC7CB /* AddEventViewController.m */; };
 		8AFF3F711B01230D000BC7CB /* GPNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F701B01230D000BC7CB /* GPNetworkingManager.m */; };
 		8AFF3F741B0131F6000BC7CB /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AFF3F731B0131F6000BC7CB /* SettingsTableViewController.m */; };
@@ -30,7 +38,7 @@
 		955558BF1AF973EB009AA8AA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558BE1AF973EB009AA8AA /* User.m */; };
 		955558C21AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C11AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m */; };
 		955558C51AF9804D009AA8AA /* CreateNewGroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */; };
-		955558C71AF980E0009AA8AA /* group.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558C61AF980E0009AA8AA /* group.png */; };
+		955558C71AF980E0009AA8AA /* group_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 955558C61AF980E0009AA8AA /* group_big.png */; };
 		955558CA1AF9A60F009AA8AA /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558C91AF9A60F009AA8AA /* Group.m */; };
 		955558CD1AF9B7E0009AA8AA /* GroupDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 955558CC1AF9B7E0009AA8AA /* GroupDetailVC.m */; };
 		9558AD431AFBCC4300E583C7 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 9558AD421AFBCC4300E583C7 /* Event.m */; };
@@ -47,6 +55,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A3001D31B05334A0053C402 /* setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@2x.png"; sourceTree = "<group>"; };
+		8A3001D91B0535060053C402 /* group@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group@2x.png"; sourceTree = "<group>"; };
+		8A3001DA1B0535060053C402 /* group2@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "group2@3x.png"; sourceTree = "<group>"; };
+		8A3001DD1B0536280053C402 /* checklist@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checklist@3x.png"; sourceTree = "<group>"; };
+		8A3001DF1B05366B0053C402 /* checklist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checklist@2x.png"; sourceTree = "<group>"; };
+		8A5177961B02776500B33DA7 /* GrouPay_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = GrouPay_icon.jpg; sourceTree = "<group>"; };
+		8A58D4591B03BA2D001095C9 /* setting@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setting@3x.png"; sourceTree = "<group>"; };
+		8AF0ED621B04ECFE005B76E1 /* UserGroupsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserGroupsViewController.h; sourceTree = "<group>"; };
+		8AF0ED631B04ECFE005B76E1 /* UserGroupsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserGroupsViewController.m; sourceTree = "<group>"; };
 		8AFF3F6C1B011769000BC7CB /* AddEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventViewController.h; sourceTree = "<group>"; };
 		8AFF3F6D1B011769000BC7CB /* AddEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventViewController.m; sourceTree = "<group>"; };
 		8AFF3F6F1B01230D000BC7CB /* GPNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPNetworkingManager.h; sourceTree = "<group>"; };
@@ -88,7 +105,7 @@
 		955558C11AF97892009AA8AA /* GroupsTabViewControllerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupsTabViewControllerTableViewController.m; sourceTree = "<group>"; };
 		955558C31AF9804D009AA8AA /* CreateNewGroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateNewGroupVC.h; sourceTree = "<group>"; };
 		955558C41AF9804D009AA8AA /* CreateNewGroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateNewGroupVC.m; sourceTree = "<group>"; };
-		955558C61AF980E0009AA8AA /* group.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group.png; sourceTree = "<group>"; };
+		955558C61AF980E0009AA8AA /* group_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = group_big.png; sourceTree = "<group>"; };
 		955558C81AF9A60F009AA8AA /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
 		955558C91AF9A60F009AA8AA /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
 		955558CB1AF9B7E0009AA8AA /* GroupDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailVC.h; sourceTree = "<group>"; };
@@ -120,7 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				8AFF3F751B013394000BC7CB /* MessageUI.framework */,
-				955558C61AF980E0009AA8AA /* group.png */,
+				955558C61AF980E0009AA8AA /* group_big.png */,
 				955558871AF968EA009AA8AA /* GrouPayApp */,
 				955558A11AF968EA009AA8AA /* GrouPayAppTests */,
 				955558861AF968EA009AA8AA /* Products */,
@@ -139,6 +156,13 @@
 		955558871AF968EA009AA8AA /* GrouPayApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A3001DF1B05366B0053C402 /* checklist@2x.png */,
+				8A3001DD1B0536280053C402 /* checklist@3x.png */,
+				8A3001D91B0535060053C402 /* group@2x.png */,
+				8A3001DA1B0535060053C402 /* group2@3x.png */,
+				8A3001D31B05334A0053C402 /* setting@2x.png */,
+				8A58D4591B03BA2D001095C9 /* setting@3x.png */,
+				8A5177961B02776500B33DA7 /* GrouPay_icon.jpg */,
 				955558B41AF96A59009AA8AA /* button.png */,
 				955558B51AF96A59009AA8AA /* Default.png */,
 				955558B61AF96A59009AA8AA /* Default@2x.png */,
@@ -172,6 +196,8 @@
 				8AFF3F701B01230D000BC7CB /* GPNetworkingManager.m */,
 				8AFF3F721B0131F6000BC7CB /* SettingsTableViewController.h */,
 				8AFF3F731B0131F6000BC7CB /* SettingsTableViewController.m */,
+				8AF0ED621B04ECFE005B76E1 /* UserGroupsViewController.h */,
+				8AF0ED631B04ECFE005B76E1 /* UserGroupsViewController.m */,
 			);
 			path = GrouPayApp;
 			sourceTree = "<group>";
@@ -292,11 +318,18 @@
 			files = (
 				955558B91AF96A59009AA8AA /* Default@2x.png in Resources */,
 				955558941AF968EA009AA8AA /* Main.storyboard in Resources */,
+				8A3001DB1B0535060053C402 /* group@2x.png in Resources */,
+				8A3001DC1B0535060053C402 /* group2@3x.png in Resources */,
 				955558B71AF96A59009AA8AA /* button.png in Resources */,
 				955558991AF968EA009AA8AA /* LaunchScreen.xib in Resources */,
-				955558C71AF980E0009AA8AA /* group.png in Resources */,
+				955558C71AF980E0009AA8AA /* group_big.png in Resources */,
+				8A3001E01B05366B0053C402 /* checklist@2x.png in Resources */,
+				8A58D45A1B03BA2D001095C9 /* setting@3x.png in Resources */,
 				955558961AF968EA009AA8AA /* Images.xcassets in Resources */,
+				8A5177971B02776500B33DA7 /* GrouPay_icon.jpg in Resources */,
 				955558B81AF96A59009AA8AA /* Default.png in Resources */,
+				8A3001DE1B0536280053C402 /* checklist@3x.png in Resources */,
+				8A3001D41B05334A0053C402 /* setting@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9558AD431AFBCC4300E583C7 /* Event.m in Sources */,
+				8AF0ED641B04ECFE005B76E1 /* UserGroupsViewController.m in Sources */,
 				955558B31AF96928009AA8AA /* RegisterViewController.m in Sources */,
 				955558BF1AF973EB009AA8AA /* User.m in Sources */,
 				955558BC1AF97346009AA8AA /* HttpUtil.m in Sources */,

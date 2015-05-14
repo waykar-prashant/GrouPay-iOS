@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AddEventViewController.h"
 #import "Group.h"
+#import "UserGroupsViewController.h"
 
-@interface GroupDetailVC : UITableViewController
+@interface GroupDetailVC : UITableViewController <UIAlertViewDelegate>
 @property (nonatomic, retain) Group *selectedGroup;
 @property (nonatomic, retain) NSMutableArray *eventArray;
 @property (nonatomic, retain) NSMutableArray *memberArray;

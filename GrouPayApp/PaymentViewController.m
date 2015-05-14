@@ -53,7 +53,7 @@
     //submit amount to the server
     NSString *amount = payText.text;
     NSDictionary *temp = [HttpUtil makePayment:userId with:eventId and:amount];
-    if(temp != nil){
+    if(temp != nil) {
         /*[self dismissViewControllerAnimated:YES completion:^{
             NSLog(@"on completion");
         }];*/
@@ -69,8 +69,5 @@
     }
     [self.navigationController popToViewController:[array objectAtIndex:index] animated:YES];
 
-    
-    
-    
 }
 @end

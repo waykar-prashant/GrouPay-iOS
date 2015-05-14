@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UITextFieldDelegate> {
+    NSString *strName, *strEmail, *strPassword, *strPhoneNumber, *strCountryCode;
+}
+
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
-- (IBAction)register:(id)sender;
+@property (weak, nonatomic) IBOutlet UITextField *countrycodeTextField;
+@property (weak, nonatomic) IBOutlet UIButton *btnRegister;
+@property (weak, nonatomic) IBOutlet UIButton *btnCancel;
+- (IBAction)btnRegisterPressed:(id)sender;
+- (IBAction)btnCancelPressed:(id)sender;
 
 @end

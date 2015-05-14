@@ -30,9 +30,30 @@ NSDictionary *jsonData1;
     [super viewDidLoad];
     self.title = @"Groups";
 
+    UIBarButtonItem *addGroup = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGroup:)];
     
-    jsonData1 = [self performSelector:@selector(fetchDataFromUrl) withObject:nil];
+    NSArray *actionButtonItems = @[addGroup];
+    self.navigationItem.rightBarButtonItems = actionButtonItems;
 
+//    UIBarButtonItem* rightNavButton=[[UIBarButtonItem alloc] initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+//    self.navigationItem.leftBarButtonItem =rightNavButton ;
+    
+
+    //self.navigationItem.rightBarButtonItem = yourButton;
+    //[yourButton release];
+    //Load all the created Groups and Display them
+    
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+    
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    jsonData1 = [self performSelector:@selector(fetchDataFromUrl) withObject:nil];
+    
     groupsArray = [[NSMutableArray alloc] init];
     for (NSArray *arr in jsonData1) {
         NSLog(@"Each Array : %@", [arr valueForKey:@"group_id"]);
@@ -44,27 +65,7 @@ NSDictionary *jsonData1;
         //[[AppDelegate getGlobalGroups] addObject:group];
         [[self groupsArray] addObject:group];
     }
-    
-    UIBarButtonItem *addGroup = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addGroup:)];
-    
-    NSArray *actionButtonItems = @[addGroup];
-    self.navigationItem.rightBarButtonItems = actionButtonItems;
-
-//    UIBarButtonItem* rightNavButton=[[UIBarButtonItem alloc] initWithTitle:@"logout" style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
-//    self.navigationItem.leftBarButtonItem =rightNavButton ;
-    
-    
-    
-    
-    //self.navigationItem.rightBarButtonItem = yourButton;
-    //[yourButton release];
-    //Load all the created Groups and Display them
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView reloadData];
 }
 
 - (NSDictionary *) fetchDataFromUrl{
@@ -120,6 +121,12 @@ NSDictionary *jsonData1;
     return [groupsArray count];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.transform = CGAffineTransformMakeTranslation(cell.bounds.size.width * 1, 0);
+    [UIView animateWithDuration:((indexPath.row + 5) * 0.10) animations:^{
+        cell.transform = CGAffineTransformIdentity;
+    }];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -158,47 +165,46 @@ NSDictionary *jsonData1;
 }
 
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+//    // Return NO if you do not want the specified item to be editable.
+//    return YES;
+//}
 
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        Group *group = [groupsArray objectAtIndex:indexPath.row];
-        NSString *post =[[NSString alloc] initWithFormat:@"api=delete_group&group_id=%@", group.group_id];
-        NSURL *url = [NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
-        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
-        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:url];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:postData];
-        
-        [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-            if(data && !connectionError) {
-                NSString *responseData = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-                NSLog(@"%@", responseData);
-                NSError *error = nil;
-                NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-                if([[responseDictionary allKeys] count] > 0) {
-                    [groupsArray removeObjectAtIndex:indexPath.row];
-                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-                }
-            }
-            else {
-            }
-        }];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        // Delete the row from the data source
+//        Group *group = [groupsArray objectAtIndex:indexPath.row];
+//        NSString *post =[[NSString alloc] initWithFormat:@"api=delete_group&group_id=%@", group.group_id];
+//        NSURL *url = [NSURL URLWithString:@"http://www.iqmicrosystems.com/groupay/v1/api.php?"];
+//        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
+//        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+//        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+//        [urlRequest setURL:url];
+//        [urlRequest setHTTPMethod:@"POST"];
+//        [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+//        [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+//        [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+//        [urlRequest setHTTPBody:postData];
+//        NSURLResponse *response = nil;
+//        NSError *error = nil;
+//        NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+//            if(responseData && !error) {
+//                NSString *responseString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+//                NSLog(@"%@", responseString);
+//                NSError *error = nil;
+//                NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+//                if([[responseDictionary allKeys] count] > 0) {
+//                    [groupsArray removeObjectAtIndex:indexPath.row];
+//                    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//                }
+//            }
+//            else {
+//            }
+//    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }   
+//}
 
 /*
 // Override to support rearranging the table view.

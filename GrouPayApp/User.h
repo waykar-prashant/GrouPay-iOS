@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString *phone;
 @property (nonatomic, retain) NSString *user_id;
 @property (nonatomic, retain) NSString *status;
+@property (nonatomic, retain) NSString *owed_amount;
 @property (nonatomic, retain) NSNumber *paid;
 
 

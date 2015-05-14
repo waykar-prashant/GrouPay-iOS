@@ -2,7 +2,7 @@
 //  SettingsTableViewController.m
 //  GrouPayApp
 //
-//  Created by Salil Shahane on 12/05/15.
+//  Created by Prashant Waykar on 12/05/15.
 //  Copyright (c) 2015 Prashant S Waykar. All rights reserved.
 //
 
@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    titles = @[@"Share", @"Logout"];
+    titles = @[@"Invite People", @"Logout"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,6 +40,13 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     return [titles count];
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.transform = CGAffineTransformMakeTranslation(cell.bounds.size.width * 1, 0);
+    [UIView animateWithDuration:((indexPath.row + 5) * 0.10) animations:^{
+        cell.transform = CGAffineTransformIdentity;
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -75,7 +82,7 @@
             if([MFMailComposeViewController canSendMail]) {
                 MFMailComposeViewController *mailComposeVC = [[MFMailComposeViewController alloc] init];
                 [mailComposeVC setMailComposeDelegate:self];
-                [mailComposeVC setMessageBody:@"https://www.google.com" isHTML:NO];
+                [mailComposeVC setMessageBody:@"To accept the invitation:\n\nhttp://iqmicrosystems.com/groupay/v1/api.php?api=rsvp_event&event_id=14&user_id=110&status=1" isHTML:NO];
                 [self.navigationController presentViewController:mailComposeVC animated:YES completion:nil];
             }
             else {
@@ -88,7 +95,7 @@
             if([MFMessageComposeViewController canSendText]) {
                 MFMessageComposeViewController *messageComposeVC = [[MFMessageComposeViewController alloc] init];
                 [messageComposeVC setMessageComposeDelegate:self];
-                [messageComposeVC setBody:@"https://www.google.com"];
+                [messageComposeVC setBody:@"To accept the invitation:\n\nhttp://iqmicrosystems.com/groupay/v1/api.php?api=rsvp_event&event_id=14&user_id=110&status=1"];
                 [self.navigationController presentViewController:messageComposeVC animated:YES completion:nil];
                 //sms
             }

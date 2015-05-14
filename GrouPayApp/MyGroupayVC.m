@@ -19,7 +19,7 @@ AppDelegate *appDel1;
     [super viewDidLoad];
     memberArray = [[NSMutableArray alloc] init];
     appDel1 = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [self fetchGroups];
+    insertIndexPaths = [[NSMutableArray alloc] init];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -38,6 +38,11 @@ AppDelegate *appDel1;
         return @"Event Members";
     }
     return @"";
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self fetchGroups];
 }
 
 - (void)fetchGroups {
@@ -82,7 +87,7 @@ AppDelegate *appDel1;
                 [user setName:name];
                 [user setUser_id:eventId];
                 [user setEmail:balance];
-[[self memberArray] addObject:user];
+                [[self memberArray] addObject:user];
                 
                 // NSString *balance = [[userArray objectAtIndex:i] valueForKey:@"balance"];
             }
@@ -146,7 +151,6 @@ AppDelegate *appDel1;
              
              [groupsArray addObject:group];
              }];*/
-            
             [self.tableView reloadData];
         }
     }];
@@ -166,11 +170,16 @@ AppDelegate *appDel1;
     return [memberArray count];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    cell.transform = CGAffineTransformMakeTranslation(cell.bounds.size.width * 1, 0);
+    [UIView animateWithDuration:((indexPath.row + 5) * 0.10) animations:^{
+        cell.transform = CGAffineTransformIdentity;
+    }];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
     // Configure the cell...
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];

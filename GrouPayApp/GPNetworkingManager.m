@@ -2,7 +2,7 @@
 //  GPNetworkingManager.m
 //  GrouPayApp
 //
-//  Created by Salil Shahane on 11/05/15.
+//  Created by Prashant Waykar on 11/05/15.
 //  Copyright (c) 2015 Prashant S Waykar. All rights reserved.
 //
 

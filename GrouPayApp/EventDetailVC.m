@@ -29,6 +29,8 @@ NSNumber *eFee;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.eventName;
+    owes = [[NSMutableArray alloc] init];
     NSLog(@"Event Details VC %@", eventId);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -75,6 +77,14 @@ NSNumber *eFee;
              //[self setUserDetails:jsonData];
              success = [jsonData[@"group_id"] integerValue];*/
             NSDictionary *jsonData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            
+            NSString *admin_id = [jsonData objectForKey:@"creator_id"];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            User *currentUser = appDelegate.userDetails;
+            
+            if([currentUser.user_id isEqualToString:admin_id])
+                _isAdmin = YES;
+            
             NSLog(@"Event Details : %@", jsonData);
             eName = [jsonData valueForKey:@"name"];
             eStartTime = [jsonData valueForKey:@"start_time"];
@@ -127,6 +137,11 @@ NSNumber *eFee;
                 [user setPaid:paid];
                 
                 [[self memberArray] addObject:user];
+                
+                if([[[userArray objectAtIndex:i] valueForKey:@"paid"] integerValue] < [[jsonData valueForKey:@"fee"] integerValue]) {
+                    user.owed_amount = [NSString stringWithFormat:@"%ld", [[jsonData valueForKey:@"fee"] integerValue] - [[[userArray objectAtIndex:i] valueForKey:@"paid"] integerValue]];
+                    [owes addObject:user];
+                }
             }
             /*[array enumerateObjectsUsingBlock:^(NSDictionary *blockArray, NSUInteger idx, BOOL *stop) {
              
@@ -167,7 +182,10 @@ NSNumber *eFee;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 3;
+    if(!_isAdmin)
+        return 3;
+    else
+        return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -177,6 +195,8 @@ NSNumber *eFee;
     }else if (section == 1){
         return [memberArray count];
     }
+    else if (section == 2)
+        return 1;
     else
         return 1;
     return 0;
@@ -188,6 +208,8 @@ NSNumber *eFee;
     }else if(section == 1){
         return @"Event Members";
     }
+    else if (section == 2)
+        return @"Send Payment Reminders";
     else
         return @"Leave Event";
     return @"";
@@ -250,17 +272,17 @@ NSNumber *eFee;
         cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
         cell.textLabel.text = [user name];
         NSString *numStr;
-        if([user paid] < eFee){
+        if([[user paid] integerValue] < [eFee integerValue]){
             numStr = [NSString stringWithFormat:@" : You Owe To Event   $%@",[[NSNumber numberWithFloat:([eFee floatValue] - [[user paid] floatValue])] stringValue]];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             cell.textLabel.textColor = [UIColor redColor];
             
-        }else if([user paid] > eFee){
+        }else if([[user paid] integerValue] > [eFee integerValue]){
             numStr = [NSString stringWithFormat:@" : You Get Back   $%@",[[NSNumber numberWithFloat:([eFee floatValue] - [[user paid] floatValue])] stringValue]];
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             cell.textLabel.textColor = [UIColor greenColor];
             
-        }else if([user paid] == eFee){
+        }else if([[user paid] integerValue] == [eFee integerValue]){
             numStr = @" : Settled Up";
             cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
             //cell.textLabel.textColor = [UIColor grayColor];
@@ -269,10 +291,26 @@ NSNumber *eFee;
         NSLog(@"U1 : %@  -- %@", [appDel userDetails].user_id, user.user_id );
        
     }
+    else if(indexPath.section == 2) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveEventCell"];
+        UIButton *btnLeaveGroup = (UIButton *)[cell viewWithTag:1];
+        [btnLeaveGroup setTitle:@"Send Payment Reminder" forState:UIControlStateNormal];
+        [btnLeaveGroup addTarget:self action:@selector(sendPaymentReminder:) forControlEvents:UIControlEventTouchUpInside];
+        btnLeaveGroup.layer.shadowColor = [UIColor grayColor].CGColor;
+        btnLeaveGroup.layer.shadowOpacity = 0.5;
+        btnLeaveGroup.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        [btnLeaveGroup.layer setMasksToBounds:YES];
+        return cell;
+    }
     else {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"leaveEventCell"];
         UIButton *btnLeaveGroup = (UIButton *)[cell viewWithTag:1];
         [btnLeaveGroup setTitle:@"Leave Event" forState:UIControlStateNormal];
+        [btnLeaveGroup addTarget:self action:@selector(leaveEvent:) forControlEvents:UIControlEventTouchUpInside];
+        btnLeaveGroup.layer.shadowColor = [UIColor grayColor].CGColor;
+        btnLeaveGroup.layer.shadowOpacity = 0.5;
+        btnLeaveGroup.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+        [btnLeaveGroup.layer setMasksToBounds:YES];
         return cell;
     }
     
@@ -300,14 +338,66 @@ NSNumber *eFee;
             listViewController.eventName = [event name];
             */
             [self.navigationController pushViewController:listViewController animated:YES];
-        }else{
+        } else{
             //cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
 }
 
+- (IBAction)sendPaymentReminder:(id)sender {
+    UserGroupsViewController *userGroupsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"UserGroupsViewController"];
+    userGroupsVC.debts = owes;
+    userGroupsVC.eventName = eName;
+    [self.navigationController pushViewController:userGroupsVC animated:YES];
+}
 
+- (IBAction)leaveEvent:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    User *currentUser = appDelegate.userDetails;
+    NSString *post =[[NSString alloc] initWithFormat:@"api=leave_event&user_id=%@&event_id=%@", currentUser.user_id, self.eventId];
+    NSURL *url = [NSURL URLWithString:@"http://iqmicrosystems.com/groupay/v1/api.php?"];
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
+    [urlRequest setURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPBody:postData];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+    if(responseData && !error) {
+        NSString *responseString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", responseString);
+        NSError *error = nil;
+        NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+        if([[responseDictionary allKeys] count] > 0) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success !" message:@"Event left successfully !" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+        else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
+        }
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        default:
+            break;
+    }
+}
 
 /*
 // Override to support conditional editing of the table view.

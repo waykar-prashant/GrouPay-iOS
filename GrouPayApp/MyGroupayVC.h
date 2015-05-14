@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyGroupayVC : UITableViewController
+@interface MyGroupayVC : UITableViewController {
+    NSMutableArray *insertIndexPaths;
+}
+
 @property (nonatomic, retain) NSMutableArray *memberArray;
 @end

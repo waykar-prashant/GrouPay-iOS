@@ -2,7 +2,7 @@
 //  AddEventViewController.m
 //  GrouPayApp
 //
-//  Created by Salil Shahane on 11/05/15.
+//  Created by Prashant Waykar on 11/05/15.
 //  Copyright (c) 2015 Prashant S Waykar. All rights reserved.
 //
 
@@ -20,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"Add Event";
     _titles = @[@"Event Name", @"Description", @"Start Time", @"End Time", @"Fee"];
     
     UIBarButtonItem *btnSaveEvent = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(saveEvent:)];
@@ -28,46 +30,72 @@
     // Do any additional setup after loading the view.
 }
 
+- (BOOL)validateUserInput {
+    if([_strEventName length] > 0 &&
+       [_strEventDescription length] > 0 &&
+       [_strStartTime length] > 0 &&
+       [_strEndTime length] > 0 &&
+       [_strFee length] > 0)
+        return YES;
+    else
+        return NO;
+}
+
 - (IBAction)saveEvent:(id)sender {
     [self.view endEditing:YES];
+    
+    if([self validateUserInput]) {
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     User *currentUser = appDelegate.userDetails;
     
-//    NSDictionary *parameters = @{@"group_id":_selectedGroup.group_id,
-//                                 @"name":_selectedGroup.name,
-//                                 @"description":_strEventDescription,
-//                                 @"start_time":_strStartTime,
-//                                 @"end_time":_strEndTime,
-//                                 @"creator_id":currentUser.user_id,
-//                                 @"fee":_strFee};
-//    [GPNetworkingManager sendRequestWithURLString:@"v1/api.php?api=create_event" parameters:parameters completionHandler:^(NSError *error, NSDictionary *responseDictionary) {
-//        
-//    }];
-    
-    NSString *post =[[NSString alloc] initWithFormat:@"api=create_event&userid=%@&group_id=%@&name=%@&description=%@&start_time=%@&end_time=%@&admin_id=%@&fee=%@", currentUser.user_id, _selectedGroup.group_id, _selectedGroup.name, _strEventDescription, _strStartTime, _strEndTime, currentUser.user_id, _strFee];
+    NSString *post =[[NSString alloc] initWithFormat:@"api=create_event&group_id=%@&name=%@&description=%@&start_time=%@&end_time=%@&creator_id=%@&fee=%@", _selectedGroup.group_id, _strEventName, _strEventDescription, _strStartTime, _strEndTime, currentUser.user_id, _strFee];
     NSURL *url = [NSURL URLWithString:baseURL];
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:kNilOptions timeoutInterval:20];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-    [request setHTTPBody:postData];
+    [urlRequest setURL:url];
+    [urlRequest setHTTPMethod:@"POST"];
+    [urlRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+    [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [urlRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+    [urlRequest setHTTPBody:postData];
     
-    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        if(data && !connectionError) {
-            NSString *responseData = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-            NSLog(@"%@", responseData);
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *responseData = [NSURLConnection sendSynchronousRequest:urlRequest returningResponse:&response error:&error];
+        if(responseData && !error) {
+            NSString *responseString = [[NSString alloc]initWithData:responseData encoding:NSUTF8StringEncoding];
+            NSLog(@"%@", responseString);
             NSError *error = nil;
-            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+            NSDictionary *responseDictionary = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&error];
+            if([[responseDictionary allKeys] count] > 0) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Success !" message:@"Event added successfully !" delegate:self cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alertView show];
+            }
+            else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+                [alertView show];
+            }
         }
         else {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:[error localizedDescription] delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+            [alertView show];
         }
-    }];
+    }
+    else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error !" message:@"Please enter all the fields to add a new event !" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];
+        [alertView show];
+    }
+}
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    switch (buttonIndex) {
+        case 0:
+            [self.navigationController popViewControllerAnimated:YES];
+            break;
+        default:
+            break;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,7 +193,7 @@
     //NSIndexPath *indexPath = [_addEventTableView indexPathForSelectedRow];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm a"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *strTime = [dateFormatter stringFromDate:self.datePicker.date];
     if(self.datePicker.tag == 1)
         _strStartTime = strTime;
